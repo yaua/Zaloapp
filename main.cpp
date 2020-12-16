@@ -11,9 +11,7 @@ int main(int argc, char *argv[])
     QString yUrl = "https://chat.zalo.me/";
     int width = 700;
     int height = 800;
-    bool tray = true;
-    a.setQuitOnLastWindowClosed(!tray);
-    MainWindow w(yTitle, yUrl, width, height, tray);
+    MainWindow w(yTitle, yUrl, width, height);
     w.show();
     return a.exec();
 }
