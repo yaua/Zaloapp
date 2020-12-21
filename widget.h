@@ -13,9 +13,6 @@ public:
     explicit Widget(QString yUrl = nullptr, QWidget *parent = nullptr);
     ~Widget();
     QWebEnginePage *getPage();
-    void goBack();
-    void goForward();
-    void refresh();
 private:
     QWebEngineView *m_webEngineView;
     QString m_yUrl;
