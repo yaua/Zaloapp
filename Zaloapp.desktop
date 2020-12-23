@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Network;Chat;InstantMessaging;Application;
+Comment[en_US]=Zalo desktop built by Qt
+Comment=This is simple chat Application.
+Encoding=UTF-8
+Exec=zalo %u
+GenericName[en_US]=
+GenericName=
+Icon=/opt/Zaloapp/icons.Zaloapp.svg
+MimeType=
+Name[en_US]=Zalo
+Name=Zalo
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
