@@ -30,18 +30,6 @@ QWebEnginePage *Widget::getPage()
 {
     return this->m_webEngineView->page();
 }
-void Widget::goBack()
-{
-    m_webEngineView->back();
-}
-void Widget::goForward()
-{
-    m_webEngineView->forward();
-}
-void Widget::refresh()
-{
-    m_webEngineView->reload();
-}
 void Widget::clearLayout(QLayout *layout)
 {
     QLayoutItem *item;
