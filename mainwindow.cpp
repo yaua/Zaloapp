@@ -24,7 +24,7 @@ MainWindow::MainWindow(QString yUrl,
     , m_width(nWidth)
     , m_height(nHeight)
 {
-    menuBar()->addMenu(createViewMenu());
+    menuBar()->addMenu(createPrintshot());
     menuBar()->addMenu(createHelpMenu());
     resize(m_width, m_height);
     setCentralWidget(m_widget);
@@ -44,11 +44,13 @@ void MainWindow::about()
                                 "Customize by yaua."
                                 "\nIf app has bug, please email: phungngoctho@gmail.com"));
 }
-QMenu *MainWindow::createViewMenu()
+QMenu *MainWindow::createPrintshot()
 {
-    QMenu *viewmenu = new QMenu("&View");
-    viewmenu->addAction(tr("PrintShot"));
-    return viewmenu;
+    QMenu *printshot = new QMenu("&PrintShot");
+    //printshot->exec();
+    //if(printshot)
+
+    return printshot;
 }
 QMenu *MainWindow::createHelpMenu()
 {
@@ -99,7 +101,7 @@ void MainWindow::on_downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
     int value = int(double(bytesReceived) / double(bytesTotal) * 100.0);
     message->setWindowTitle("DOWNLOADING");
     message->setText("Start dowwnloading: " + QString::number(value) + "%");
-    this->message->show();
+    //this->message->show(); //show messager
 }
 
 void MainWindow::on_downloadFinish(QString filePath)
@@ -130,6 +132,8 @@ void MainWindow::on_downloadFinish(QString filePath)
                   proc.startDetached("nemo", QStringList() << "--no-desktop" << filePath);
               else if (output == "kfmclient_dir.desktop")
                   proc.startDetached("konqueror", QStringList() << "--select" << filePath);
+              else if (output == "org.thunar.desktop")
+                  proc.startDetached("thunar", QStringList() << "--select" << filePath);
              // else
                  // openPath(filePath.left(filePath.lastIndexOf("/")));
                 //process->start(exec + filePath);

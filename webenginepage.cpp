@@ -1,17 +1,34 @@
 #include "webenginepage.h"
-#include <QDir>
-#include <QDebug>
+#include "widget.h"
+#include <QFileInfo>
+#include <QDesktopServices>
 
-WebEnginePage::WebEnginePage(QObject *parent) : QWebEnginePage(parent){}
-QWebEnginePage *WebEnginePage::createWindow(QWebEnginePage::WebWindowType type)
+WebEnginePage::~WebEnginePage()
+{
+}
+WebEnginePage::WebEnginePage()
+{
+    isNewWindow=false;
+}
+WebEnginePage *WebEnginePage::createWindow(QWebEnginePage::WebWindowType type)
 {
     Q_UNUSED(type)
-    WebEnginePage *page = new WebEnginePage();
-    connect(page, &QWebEnginePage::urlChanged, this, &WebEnginePage::onUrlChanged);
-    return page;
+    w=new WebEnginePage;
+    connect(w,&WebEnginePage::urlChanged,[=](QUrl url)
+    {
+        onUrlChanged(url,type);
+    });
+    return w;
 }
-void WebEnginePage::onUrlChanged(const QUrl url)
+void WebEnginePage::onUrlChanged(const QUrl url, int type)
 {
-    setUrl(url);
-    sender()->deleteLater();
+    isNewWindow=true;
+    newWindowType=type;
+    QString u = QUrl(url).fileName();
+    if(u!=0)
+    {
+        QDesktopServices::openUrl(url);
+    }
+     connect(w, nullptr, nullptr, nullptr);
+     emit urlChanged(url);
 }
